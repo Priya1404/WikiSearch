@@ -1,0 +1,28 @@
+//
+//  Caching.swift
+//  WikiSearch
+//
+//  Created by Priya Srivastava on 09/01/21.
+//
+
+import Foundation
+import UIKit
+
+let imageCache = ImageCache()
+
+/// Utility class for caching image
+class ImageCache: NSCache<AnyObject, AnyObject> {
+    
+    ///Add new downloaded image
+    func addImage(_ image: UIImage, key: String) {
+        setObject(image, forKey: key as AnyObject)
+    }
+    
+    ///Get image if already present
+    func getImage(forKey key: String) -> UIImage? {
+        guard let image = object(forKey: key as AnyObject) as? UIImage else {
+            return nil
+        }
+        return image
+    }
+}
